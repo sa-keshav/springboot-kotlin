@@ -9,9 +9,9 @@ import java.util.*
 class CustomerRepository(private val jdbcTemplate: JdbcTemplate) {
 
     fun findById(id: UUID): Customer? {
-        val sql = "Select * from customers where id='${id}'"// it is possible of sql injection!!! change the direct variable to ? and then add the variable
+        val sql = "Select * from customers where id = ?"// it is possible of sql injection!!! change the direct variable to ? and then add the variable
 
-        var customer = jdbcTemplate.query(sql) { it, _ ->
+        var customer = jdbcTemplate.query(sql, arrayOf(id)) { it, _ ->
             Customer(
                     id = UUID.fromString(it.getString("id")),
                     name = it.getString("name")
@@ -23,7 +23,7 @@ class CustomerRepository(private val jdbcTemplate: JdbcTemplate) {
     }
 
     fun create(customer: Customer) {
-        val sql = "Insert into customers(id, name)values('${customer.id}', '${customer.name}')"
-        jdbcTemplate.update(sql)
+        val sql = "Insert into customers(id, name)values(?, ?)"
+        jdbcTemplate.update(sql, customer.id, customer.name)
     }
 }
