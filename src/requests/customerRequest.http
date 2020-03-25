@@ -1,4 +1,4 @@
-GET http://127.0.0.1:8080/api/customers/316a59a0-78f1-4168-8a5a-4e2a75616ffb
+GET http://127.0.0.1:8080/api/customers/1
 Accept: application/json
 
 ###
@@ -11,5 +11,25 @@ Content-Type: application/json
 {
   "name": "CodeKata"
 }
+
+###
+
+PUT http://127.0.0.1:8080/api/customers/2
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": 2,
+  "name": "CodingDojo"
+}
+
+###
+
+DELETE http://127.0.0.1:8080/api/customers/1
+
+###
+
+GET http://127.0.0.1:8080/api/customers
+Accept: application/json
 
 ###

@@ -1,8 +1,15 @@
 package com.spring.tutorial
 
-import java.util.*
 
+import javax.persistence.*
+
+@Entity
+@Table(name= "customers")
 data class Customer(
-        val id: UUID,
-        val name: String
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        val id: Long? = null ,
+        val name: String,
+        val password: String
+
 )
